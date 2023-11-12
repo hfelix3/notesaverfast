@@ -23,7 +23,7 @@ app.get('/', (req, res) =>
 //"GET route" that gets notes
 app.get('/api/notes', (req, res) => {
 fs.readFile('./db/db.json', function(err, data) {
-  res.json(data);
+  res.json(JSON.parse(data));
 });
 });
 
