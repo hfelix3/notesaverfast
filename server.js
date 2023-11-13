@@ -34,7 +34,7 @@ app.get('/notes', (req, res) =>
 
 // Serve the CSS file
 app.get('/css', (req, res) =>
-  res.sendFile(path.join(__dirname, '/public/styles/jass.css'))
+  res.sendFile(path.join(__dirname, '/public/css/styles.css'))
 );
 
 // GET route that returns text and title from json
