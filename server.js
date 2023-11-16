@@ -45,30 +45,33 @@ app.get('/api/db/:title', (req, res) => {
   });
 
   //POST notes
-  app.post('/api/db', (req, res) => {
+  app.post('/api/notes', (req, res) => {
 
     // Destructuring this gets the text in the body for noteTitle and noteText
-  const { noteTitle , noteText } = req.body;
+  const { title , text } = req.body;
 
 //if noteTitle and notText are present 
-if (noteTitle && noteText) {
+if (title && text) {
 
   //variable 
   const newNote = {
-    noteTitle,
-    noteText,
+    title,
+    text,
   };
 
   // Convert the data to a string so we can save it
   const noteString = JSON.stringify(newNote);
 
+  // TODO:REFACTOR NOTES IN READ FILE NOT DO JSON .PARSE NOTES NEEDS TO RETUN READ FILE AND GET THE NEW NOTES AND PUSH. PARSE RESPONSE FOMR READ FILE INSIDE OR READ FILE METHOD. THEN PUSH
+
+  // TODO: LOOK AT POST, FETCH 17-20, EX20 THE SOLUTION. UUID PACKAGE
   //reads the note created 
-  const notes = JSON.parse(data);
-  fs.readFile('./db/db.json', 'utf8', (err) =>
-  err
-  ? console.error(err)
-  : notes.push(newNote)
-  );
+  // const notes = JSON.parse(data);
+  // fs.readFile('./db/db.json', 'utf8', (err) =>
+  // err
+  // ? console.error(err)
+  // : notes.push(newNote)
+  // );
 
   // Write the string in the file following the path to db folder then .json file
   fs.writeFile(`./db/db.json`, noteString, (err) =>
@@ -78,6 +81,7 @@ if (noteTitle && noteText) {
         `Note has been written to JSON file`
         )
   );
+
   
   const response = {
     status: 'success',
